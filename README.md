@@ -12,6 +12,27 @@ This project is a TypeScript-based AI agent that can:
 
 *   Node.js (v20 or later)
 *   Docker
+*   Docker Compose
+
+### Running the Application
+
+1.  **Start ClickHouse:**
+
+    ```bash
+    docker-compose up -d
+    ```
+
+2.  **Run the agent:**
+
+    ```bash
+    npx tsx src/index.ts
+    ```
+
+3.  **Stop ClickHouse:**
+
+    ```bash
+    docker-compose down
+    ```
 
 ### Building and Running the Docker Image
 

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/hegdemanu/QueryAgent#readme",
   "dependencies": {
+    "@clickhouse/client": "^1.14.0",
     "@types/node": "^24.10.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
