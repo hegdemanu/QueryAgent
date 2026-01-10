@@ -1,0 +1,26 @@
+{
+  "name": "order-execution-engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fastify/websocket": "^11.2.0",
+    "bullmq": "^5.66.4",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.2",
+    "ioredis": "^5.9.1",
+    "pg": "^8.16.3"
+  }
+}
