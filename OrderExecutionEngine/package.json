@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "migrate": "psql $DATABASE_URL -f src/db/schema.sql",
+    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
@@ -33,6 +34,7 @@
     "nodemon": "^3.1.11",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3"
   }
