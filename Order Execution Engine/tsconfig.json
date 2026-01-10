@@ -15,12 +15,37 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
     "paths": {
-      "@domain/*": ["domain/*"],
-      "@infra/*": ["infra/*"],
-      "@api/*": ["api/*"],
-      "@dex/*": ["dex/*"]
+      "@domain/*": [
+        "domain/*"
+      ],
+      "@infra/*": [
+        "infra/*"
+      ],
+      "@api/*": [
+        "api/*"
+      ],
+      "@dex/*": [
+        "dex/*"
+      ],
+      "@db/*": [
+        "db/*"
+      ],
+      "@events/*": [
+        "events/*"
+      ],
+      "@worker/*": [
+        "worker/*"
+      ],
+      "@state/*": [
+        "state/*"
+      ]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

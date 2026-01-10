@@ -1,0 +1,142 @@
+{
+    "info": {
+        "name": "Order Execution Engine",
+        "description": "API collection for Order Execution Engine - Market Order DEX Router",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/health",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "health"
+                    ]
+                },
+                "description": "Check server health and database connection status"
+            }
+        },
+        {
+            "name": "Create Order (REST)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"tokenIn\": \"SOL\",\n  \"tokenOut\": \"USDC\",\n  \"amount\": 1,\n  \"slippage\": 0.01\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/api/orders",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "orders"
+                    ]
+                },
+                "description": "Create a new market order. Returns orderId immediately. For real-time updates, use WebSocket endpoint."
+            }
+        },
+        {
+            "name": "Get Order by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/orders/:orderId",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "orders",
+                        ":orderId"
+                    ],
+                    "variable": [
+                        {
+                            "key": "orderId",
+                            "value": "{{orderId}}",
+                            "description": "UUID of the order"
+                        }
+                    ]
+                },
+                "description": "Get order details and execution history by ID"
+            }
+        },
+        {
+            "name": "List Recent Orders",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/api/orders",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "orders"
+                    ]
+                },
+                "description": "List recent 50 orders"
+            }
+        },
+        {
+            "name": "WebSocket Order Execution",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Connection",
+                        "value": "Upgrade"
+                    },
+                    {
+                        "key": "Upgrade",
+                        "value": "websocket"
+                    }
+                ],
+                "url": {
+                    "raw": "{{wsUrl}}/api/orders/execute",
+                    "host": [
+                        "{{wsUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "orders",
+                        "execute"
+                    ]
+                },
+                "description": "WebSocket endpoint for real-time order execution.\n\n**Usage:**\n1. Connect to ws://localhost:3000/api/orders/execute\n2. Send JSON message: {\"tokenIn\": \"SOL\", \"tokenOut\": \"USDC\", \"amount\": 1, \"slippage\": 0.01}\n3. Receive status updates: pending → routing → building → submitted → confirmed/failed\n\n**Example Response Sequence:**\n```json\n{\"orderId\": \"...\", \"status\": \"pending\"}\n{\"orderId\": \"...\", \"status\": \"routing\"}\n{\"orderId\": \"...\", \"status\": \"building\", \"routing\": {...}}\n{\"orderId\": \"...\", \"status\": \"submitted\"}\n{\"orderId\": \"...\", \"status\": \"confirmed\", \"txHash\": \"...\", \"executionPrice\": 99.5}\n```"
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3000",
+            "type": "string"
+        },
+        {
+            "key": "wsUrl",
+            "value": "ws://localhost:3000",
+            "type": "string"
+        },
+        {
+            "key": "orderId",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}
